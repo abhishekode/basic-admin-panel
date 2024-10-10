@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import DefaultLayout from '@/layout/DefaultLayout'
-import { AdminAPI } from '@/utils/api.method'
 import { IAdminResponse } from '@/components/common/Interfaces'
 import AddNewAdmin from '@/components/AdminComponent/AddNewAdmin'
 import ListAdmin from '@/components/AdminComponent/ListAdmin';

@@ -17,12 +17,23 @@ const ListAdmin: React.FC<ListAdminProps> = ({ adminData, fetchAdmins }) => {
     const colDefs: any = [
         {
             field: 'name',
-            headerName: 'Name',
+            headerName: 'First Name',
             flex: 1,
             filter: true,
             cellRenderer: (params: { data: IAdmin }) => {
                 return (
-                    <p className='first-letter:uppercase'>{params?.data?.name}</p>
+                    <p className='first-letter:uppercase'>{params?.data?.firstName}</p>
+                )
+            }
+        },
+        {
+            field: 'name',
+            headerName: 'Last Name',
+            flex: 1,
+            filter: true,
+            cellRenderer: (params: { data: IAdmin }) => {
+                return (
+                    <p className='first-letter:uppercase'>{params?.data?.lastName}</p>
                 )
             }
         },
@@ -50,10 +61,10 @@ const ListAdmin: React.FC<ListAdminProps> = ({ adminData, fetchAdmins }) => {
                 const active = params.data.isActive as boolean;
 
                 const handleSwitchChange = (newValue: boolean) => {
-                    AdminAPI.updateById(params.data._id, { name: params.data.name, isActive: newValue }).then(() => {
-                        toast.success('Updated Successfully')
-                        fetchAdmins()
-                    })
+                    // AdminAPI.updateById(params.data._id, { name: params.data.name, isActive: newValue }).then(() => {
+                    //     toast.success('Updated Successfully')
+                    //     fetchAdmins()
+                    // })
                 };
 
                 return (

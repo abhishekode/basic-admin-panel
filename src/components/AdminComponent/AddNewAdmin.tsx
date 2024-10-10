@@ -25,7 +25,9 @@ const AddNewAdmin: React.FC<AddNewAdminProps> = (
         formState: { errors },
     } = useForm<NewAdminAddRequest>({
         defaultValues: updateAdminData ? {
-            name: updateAdminData.name,
+            firstName: updateAdminData.firstName,
+            lastName: updateAdminData.lastName,
+            phoneNumber: updateAdminData.phoneNumber,
             email: updateAdminData.email,
             isActive: updateAdminData.isActive,
         } : {},
@@ -37,7 +39,9 @@ const AddNewAdmin: React.FC<AddNewAdminProps> = (
             if (updateAdminData?._id) {
                 res = await AdminAPI.updateById(updateAdminData?._id, {
                     isActive: data.isActive || false,
-                    name: data.name,
+                    firstName: data.firstName,
+                    lastName: data.lastName,
+                    email: data.email
                 });
 
             } else {
@@ -74,7 +78,7 @@ const AddNewAdmin: React.FC<AddNewAdminProps> = (
                                     <input
                                         type="text"
                                         placeholder="Enter your name"
-                                        {...register("name", { required: true })}
+                                        {...register("firstName", { required: true })}
                                         className="w-full rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 text-black outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                                     />
 
@@ -82,8 +86,29 @@ const AddNewAdmin: React.FC<AddNewAdminProps> = (
                                         <FaUser />
                                     </span>
                                 </div>
-                                {errors.name && (
-                                    <div className="text-sm text-red-600">Name is required</div>
+                                {errors.firstName && (
+                                    <div className="text-sm text-red-600">First Name is required</div>
+                                )}
+                            </div>
+
+                            <div className="mb-4">
+                                <label className="mb-2.5 block font-medium">
+                                    name
+                                </label>
+                                <div className="relative">
+                                    <input
+                                        type="text"
+                                        placeholder="Enter your name"
+                                        {...register("lastName", { required: true })}
+                                        className="w-full rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 text-black outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                                    />
+
+                                    <span className="absolute right-4 top-4">
+                                        <FaUser />
+                                    </span>
+                                </div>
+                                {errors.lastName && (
+                                    <div className="text-sm text-red-600">Last Name is required</div>
                                 )}
                             </div>
 
@@ -136,7 +161,7 @@ const AddNewAdmin: React.FC<AddNewAdminProps> = (
                                     <input
                                         type="tel"
                                         placeholder="Enter your number"
-                                        {...register("phone", { required: true })}
+                                        {...register("phoneNumber", { required: true })}
                                         className="w-full rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 text-black outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                                     />
 
@@ -144,7 +169,7 @@ const AddNewAdmin: React.FC<AddNewAdminProps> = (
                                         <FaPhone />
                                     </span>
                                 </div>
-                                {errors.phone && (
+                                {errors.phoneNumber && (
                                     <div className="text-sm text-red-600">Phone is required</div>
                                 )}
                             </div>

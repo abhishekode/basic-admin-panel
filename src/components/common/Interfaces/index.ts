@@ -46,11 +46,13 @@ export enum AppVersionHistoryFilter {
 }
 
 export interface IAdmin extends MongoResponse {
-  name: string;
+  firstName: string
+  lastName: string;
   email: string;
-  phone: string;
+  phoneNumber: string;
   password: string;
   isActive: boolean;
+  isDeleted: boolean;
 }
 export interface IAdminResponse {
   allAdmins: IAdmin[];
@@ -101,11 +103,13 @@ export interface IPassengerCancelTripReasonResponse {
 }
 
 export interface NewAdminAddRequest {
+  firstName: string;
+  lastName: string;
   email: string;
   password?: string;
-  name: string;
-  phone?: string;
+  phoneNumber?: string;
   isActive?: boolean;
+  isDeleted?: boolean;
 }
 
 interface RatingObj {
